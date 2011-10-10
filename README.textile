@@ -10,7 +10,15 @@ p. All webservice return JSON Object
 
 h4. User
 
+h5. Authentificate user
+
+p. This webservice request facebook with the accesstoken given by the client and retrieve information. It check in the database if the user exists and retrieves information (FBid, name, firstName, lastname). If the user doesn't exist, it automatically creates him.
+
+* Success: If the access_token is correct, it return to the client FBid,name,firstName,lastname
+* Error: If the access_token is not correct
+
 p. @GET user/{access_token}@ _(GET http://cold-frost-3484.herokuapp.com/user/{access_token})_
+
 
 p. Return
 * Success

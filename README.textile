@@ -6,11 +6,13 @@ p. "http://cold-frost-3484.herokuapp.com/":http://cold-frost-3484.herokuapp.com/
 
 h3. Webservices:
 
+p. All webservice return JSON Object
+
 h4. User
 
-p. @GET user/{access_token}@
+p. @GET user/{access_token}@ _(GET http://cold-frost-3484.herokuapp.com/user/{access_token})_
 
-p. Return:
+p. Return
 * Success
 
 bc. {

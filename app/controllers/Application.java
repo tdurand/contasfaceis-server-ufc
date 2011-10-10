@@ -18,7 +18,7 @@ public class Application extends Controller {
         if (access_token != null) {
             me = WS.url("https://graph.facebook.com/me?access_token=%s", WS.encode(access_token)).get().getJson().getAsJsonObject();
         }
-        render(me);
+        renderText(me);
     }
 
 }

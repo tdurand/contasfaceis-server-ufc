@@ -3,7 +3,8 @@
 # ~~~~
 
 # Home page
-GET     /{access_token}                                       Application.index
+GET     /                                       Application.index
+GET     /user/{access_token}                    Application.user
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

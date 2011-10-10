@@ -1,0 +1,30 @@
+h2. Documentation
+
+h3. Deployed application
+
+p. "http://cold-frost-3484.herokuapp.com/":http://cold-frost-3484.herokuapp.com/
+
+h3. Webservices:
+
+h4. User
+
+p. @GET user/{access_token}@
+
+p. Return:
+* Success
+
+bc. {
+"FBid":1125222192,
+"name":"Thibault Durand",
+"firstName":"Thibault",
+"lastName":"Durand"
+}
+
+* Error
+
+bc. {
+    "error":{
+            "message":"Invalid OAuth access token.",
+            "type":"OAuthException"
+            }
+    }

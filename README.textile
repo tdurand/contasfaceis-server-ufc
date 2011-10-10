@@ -1,16 +1,16 @@
-h2. Documentation
+h1. Documentation
 
-h3. Deployed application
+h2. Deployed application
 
 p. "http://cold-frost-3484.herokuapp.com/":http://cold-frost-3484.herokuapp.com/
 
-h3. Webservices:
+h2. Webservices:
 
 p. All webservice return JSON Object
 
-h4. User
+h3. User
 
-h5. Authentificate user
+h4. Authentificate user
 
 p. This webservice request facebook with the accesstoken given by the client and retrieve information. It check in the database if the user exists and retrieves information (FBid, name, firstName, lastname). If the user doesn't exist, it automatically creates him.
 

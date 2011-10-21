@@ -12,18 +12,19 @@ import models.*;
 
 public class Application extends Controller {
     
-    public static void index() {
-        render();
-    }
-
-    public static void user() {
+    @Before(unless="index")
+    static void auth() {
         JsonObject me = null;
         String access_token=params.get("access_token");
         if (access_token != null) {
             me = WS.url("https://graph.facebook.com/me?access_token=%s", WS.encode(access_token)).get().getJson().getAsJsonObject();
             if(me.get("error")==null) {
-                User user=new User(me.get("id").getAsInt(),me.get("name").getAsString(),me.get("first_name").getAsString(),me.get("last_name").getAsString());
-                renderJSON(user);
+                User user=User.find("byFBid", me.get("id").getAsString()).first();
+                if(user==null) {
+                    user=new User(me.get("id").getAsInt(),me.get("name").getAsString(),me.get("first_name").getAsString(),me.get("last_name").getAsString());
+                    user.create();
+                }
+                session.put("uuid", user.id);
             }
             else {
                 renderText(me);
@@ -33,5 +34,16 @@ public class Application extends Controller {
             renderText("Need access_token");
         }
     }
+    
+    public static void index() {
+        render();
+    }
+    
+    public static void user() {
+        User user=User.findById(Long.parseLong(session.get("uuid")));
+        renderJSON(user);
+    }
+    
+    
 
 }

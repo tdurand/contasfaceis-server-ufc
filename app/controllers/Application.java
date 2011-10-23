@@ -44,6 +44,11 @@ public class Application extends Controller {
         renderJSON(user);
     }
     
+    public static void accounts() {
+        User user=User.findById(Long.parseLong(session.get("uuid")));
+        
+    }
+    
     
 
 }

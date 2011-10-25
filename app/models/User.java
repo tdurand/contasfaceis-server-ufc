@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,15 +17,24 @@ public class User extends Model {
     public String name;
     public String firstName;
     public String lastName;
+    public String email;
     
     @OneToMany
     public List<ParticipantAccount> listParticipantAccount;
     
-    public User(int fBid, String name, String firstName, String lastName) {
+    public User(int fBid, String name, String firstName, String lastName, String email) {
         super();
-        FBid = fBid;
+        this.FBid = fBid;
         this.name = name;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.listParticipantAccount=new ArrayList<ParticipantAccount>();
+    }
+
+    public User(String email) {
+        super();
+        this.email = email;
+        this.listParticipantAccount=new ArrayList<ParticipantAccount>();
     }
 }

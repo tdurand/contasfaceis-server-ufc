@@ -4,7 +4,13 @@
 
 # Home page
 GET     /                                       Application.index
-GET     /user/{access_token}                    Application.user
+
+#User information
+GET     /user/{access_token}                                   Application.user
+GET     /user/account/all/{access_token}                       Users.listOfAccounts
+
+#Create Account
+POST    /account/                                              Accounts.create
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

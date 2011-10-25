@@ -9,6 +9,8 @@ import java.util.*;
 
 import com.google.gson.JsonObject;
 
+import flexjson.JSONSerializer;
+
 import models.*;
 
 @With(Secure.class)
@@ -21,7 +23,7 @@ public class Application extends Controller {
     
     public static void user() {
         User user=User.findById(Long.parseLong(session.get("uuid")));
-        renderJSON(user);
+        renderJSON(new JSONSerializer().exclude("*.class").serialize(user));
     }
 
 }

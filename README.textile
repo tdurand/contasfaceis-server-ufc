@@ -53,26 +53,16 @@ bc. [
 {
 "account":{
 "currency":"euros",
-"entityId":3,
-"id":3,
+"entityId":1,
+"id":1,
 "name":"NewAccount",
 "persistent":true
 },
-"entityId":4,
-"id":4,
+"entityId":1,
+"id":1,
 "persistent":true,
 "role":"ADMIN",
-"status":"CONFIRMED",
-"user":{
-"FBid":1125222192,
-"email":null,
-"entityId":1,
-"firstName":"Thibault",
-"id":1,
-"lastName":"Durand",
-"name":"Thibault Durand",
-"persistent":true
-}
+"status":"CONFIRMED"
 }
 ]
     

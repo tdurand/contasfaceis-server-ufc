@@ -76,9 +76,9 @@ p. @POST account/@
 
 p. Arguments :
 
-* *access_token* : Your facebook access_token
-* *name* : the name of the account
-* *currency* : the currency of the account (exemple: "euro")
+* *access_token (required)* : Your facebook access_token
+* *name (required)* : the name of the account
+* *currency (required)* : the currency of the account (exemple: "euro")
 * *emails* : the list of emails of the participants you want to invite
 
 p. Return the account just created

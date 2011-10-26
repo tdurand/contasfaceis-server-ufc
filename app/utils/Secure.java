@@ -23,6 +23,11 @@ public class Secure extends Controller {
                 if(user==null) {
                     user=Users.create(me.get("id").getAsInt(),me.get("name").getAsString(),me.get("first_name").getAsString(),me.get("last_name").getAsString(),me.get("email").getAsString());
                 }
+                else if(user.email!=me.get("email").getAsString()) {
+                    user.email=me.get("email").getAsString();
+                    user.save();
+                }
+                
                 session.put("uuid", user.id);
             }
             else {

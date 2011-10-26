@@ -54,7 +54,9 @@ p. Arguments :
 * currency : the currency of the account (exemple: "euro")
 * emails : the list of emails of the participants you want to invite
 
-p. Return:
+p. Return the account just created
+
+For example: creation of an account "NewAccount" with 2 participants : test@gmail.com and truc@gmail.com
 
 bc. 
     {

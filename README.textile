@@ -47,7 +47,7 @@ p. This web service retrieve the list of account the user is part of
 
 p. @GET /user/account/all/{access_token}@
 
-p. Return the list of account : in this example, there is just one account call "NewAccount"
+p. Return the list of accounts the user is part of : in this example, there is just one account call "NewAccount", and the user is "ADMIN".
 
 bc. [
 {

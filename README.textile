@@ -28,6 +28,7 @@ bc. {
 "name":"Thibault Durand",
 "firstName":"Thibault",
 "lastName":"Durand"
+"email":"tibo.durand@gmail.com"
 }
 
 * Error
@@ -39,6 +40,42 @@ bc. {
             }
     }
     
+    
+h4. List accounts of the user
+
+p. This web service retrieve the list of account the user is part of
+
+p. @GET /user/account/all/{access_token}@
+
+p. Return the list of account : in this example, there is just one account call "NewAccount"
+
+bc. [
+{
+"account":{
+"currency":"euros",
+"entityId":3,
+"id":3,
+"name":"NewAccount",
+"persistent":true
+},
+"entityId":4,
+"id":4,
+"persistent":true,
+"role":"ADMIN",
+"status":"CONFIRMED",
+"user":{
+"FBid":1125222192,
+"email":null,
+"entityId":1,
+"firstName":"Thibault",
+"id":1,
+"lastName":"Durand",
+"name":"Thibault Durand",
+"persistent":true
+}
+}
+]
+    
 h3. Account
 
 h4. Create Account
@@ -49,14 +86,16 @@ p. @POST account/@
 
 p. Arguments :
 
-* access_token : Your facebook access_token
-* name : the name of the account
-* currency : the currency of the account (exemple: "euro")
-* emails : the list of emails of the participants you want to invite
+* *access_token* : Your facebook access_token
+* *name* : the name of the account
+* *currency* : the currency of the account (exemple: "euro")
+* *emails* : the list of emails of the participants you want to invite
 
 p. Return the account just created
 
 For example: creation of an account "NewAccount" with 2 participants : test@gmail.com and truc@gmail.com
+
+(_Arguments: access_token=AAAEFcJcBFwEBAPHM8Rz1x2L3sVaZAqrEBTPHIkMFr5&name=NewAccount&currency=euros&emails=test@gmail.com&emails=truc@gmail.com_)
 
 bc. 
     {

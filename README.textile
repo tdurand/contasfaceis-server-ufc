@@ -38,3 +38,100 @@ bc. {
             "type":"OAuthException"
             }
     }
+    
+h3. Account
+
+h4. Create Account
+
+p. This web service create an Account and send invite to participants
+
+p. @POST account/@ 
+
+p. Arguments :
+
+* access_token : Your facebook access_token
+* name : the name of the account
+* currency : the currency of the account (exemple: "euro")
+* emails : the list of emails of the participants you want to invite
+
+p. Return:
+
+bc. 
+    {
+    "creator":{
+    "entityId":4,
+    "id":4,
+    "persistent":true,
+    "role":"ADMIN",
+    "status":"CONFIRMED",
+    "user":{
+    "FBid":1125222192,
+    "email":null,
+    "entityId":1,
+    "firstName":"Thibault",
+    "id":1,
+    "lastName":"Durand",
+    "name":"Thibault Durand",
+    "persistent":true
+    }
+    },
+    "currency":"euros",
+    "entityId":3,
+    "id":3,
+    "listParticipants":[
+    {
+    "entityId":4,
+    "id":4,
+    "persistent":true,
+    "role":"ADMIN",
+    "status":"CONFIRMED",
+    "user":{
+    "FBid":1125222192,
+    "email":null,
+    "entityId":1,
+    "firstName":"Thibault",
+    "id":1,
+    "lastName":"Durand",
+    "name":"Thibault Durand",
+    "persistent":true
+    }
+    },
+    {
+    "entityId":6,
+    "id":6,
+    "persistent":true,
+    "role":"USER",
+    "status":"PENDING",
+    "user":{
+    "FBid":0,
+    "email":"test@gmail.com",
+    "entityId":5,
+    "firstName":null,
+    "id":5,
+    "lastName":null,
+    "name":null,
+    "persistent":true
+    }
+    },
+    {
+    "entityId":8,
+    "id":8,
+    "persistent":true,
+    "role":"USER",
+    "status":"PENDING",
+    "user":{
+    "FBid":0,
+    "email":"truc@gmail.com",
+    "entityId":7,
+    "firstName":null,
+    "id":7,
+    "lastName":null,
+    "name":null,
+    "persistent":true
+    }
+    }
+    ],
+    "name":"NewAccount",
+    "persistent":true
+    }
+

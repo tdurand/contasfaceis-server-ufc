@@ -63,5 +63,34 @@ public class Accounts extends Controller {
        
     }
     
+    public static void delete(Long accountId) {
+        //Retrieve user
+        User creator=User.findById(Long.parseLong(session.get("uuid")));
+        
+        //Retrieve account
+        Account accountToDelete=Account.findById(accountId);
+        if(accountToDelete!=null) {
+            if(accountToDelete.creator.user.equals(creator)) {
+                for (Iterator iterator = accountToDelete.listParticipants.iterator(); iterator.hasNext();) {
+                    ParticipantAccount participantAccount = (ParticipantAccount) iterator.next();
+                    User userTemp=User.findById(participantAccount.user.id);
+                    userTemp.listParticipantAccount.remove(participantAccount);
+                    userTemp.save();
+                }
+                accountToDelete.delete();
+                renderJSON("{\"success\":\"Account delete\"}");
+            }
+            else {
+                renderJSON("{\"error\":\"Not allowed to delete an account if you're not the creator\"}");
+            }
+        }
+        else {
+            renderJSON("{\"error\":\"This account doesn't exist\"}");
+        }
+        
+        
+    }
+    
+    
     
 }

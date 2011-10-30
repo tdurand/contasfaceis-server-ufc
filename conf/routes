@@ -9,8 +9,14 @@ GET     /                                       Application.index
 GET     /user/{access_token}                                   Application.user
 GET     /user/account/all/{access_token}                       Users.listOfAccounts
 
+#Accept participation
+GET     /participationaccount/{participantAccountId}/confirm/{access_token} ParticipantsAccounts.confirmParticipation
+
 #Create Account
 POST    /account/                                              Accounts.create
+#Delete Account
+GET     /account/{accountId}/delete/{access_token}             Accounts.delete
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

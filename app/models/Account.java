@@ -3,6 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -16,13 +17,13 @@ import play.db.jpa.Model;
 @Entity
 public class Account extends Model {
     
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
     public List<ParticipantAccount> listParticipants;
     
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL,orphanRemoval=true)
     public ParticipantAccount creator;
     
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL,orphanRemoval=true) 
     public List<Expense> listExpenses;
     
     public String name;

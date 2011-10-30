@@ -3,6 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -11,8 +12,6 @@ import javax.persistence.Table;
 
 import play.data.validation.Required;
 import play.db.jpa.Model;
-import utils.Constants.ParticipantRole;
-import utils.Constants.ParticipantStatus;
 import utils.Constants.*;
 
 @Entity
@@ -24,7 +23,7 @@ public class ParticipantAccount extends Model {
     @ManyToOne
     public Account account;
     
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
     public List<Expense> listExpenses;
     
     public ParticipantStatus status;

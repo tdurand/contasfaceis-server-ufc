@@ -30,7 +30,7 @@ public class Users extends Controller {
     
     public static void listOfAccounts() {
         User user=User.findById(Long.parseLong(session.get("uuid")));
-        renderJSON(new JSONSerializer().exclude("*.class","user","account.creator").rootName("listAccounts").serialize(user.listParticipantAccount));
+        renderJSON(new JSONSerializer().exclude("*.class","user","account.creator").rootName("listParticipationsToAccounts").serialize(user.listParticipantAccount));
     }
     
     public static void listAllUsers() {

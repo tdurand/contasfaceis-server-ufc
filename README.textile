@@ -182,8 +182,8 @@ bc. {"success":"Account delete"}
 
 p. Errors:
 
-bc. {"error":"This account doesn't exist"}
-bc. {"error":"Not allowed to delete an account if you're not ADMIN"}
+p. @{"error":"This account doesn't exist"}@
+p. @{"error":"Not allowed to delete an account if you're not ADMIN"}@
 
 h4. Confirm participation to an account
 
@@ -194,8 +194,13 @@ p. @GET participationaccount/{participationaccountId}/confirm/{access_token}@
 p. _NB: {participationaccountId} is the id you get when you call the webservice "List accounts of the user": _
 
 p. Success: 
-bc. {"success":"Participation confirmed"}
+
+p. @{"success":"Participation confirmed"}@
+
 p. Errors:
-bc. {"error":"Participation already confirmed"}
-bc. {"error":"Not allowed to confirm"}
-bc. {"error":"This participation doesn't exist"}
+
+p. @{"error":"Participation already confirmed"}@
+
+p. @{"error":"Not allowed to confirm"}@
+
+p. @{"error":"This participation doesn't exist"}@

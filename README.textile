@@ -201,7 +201,7 @@ bc. {"error":"Participation already confirmed"}
 {"error":"Not allowed to confirm"}
 {"error":"This participation doesn't exist"}
     
-p. _NB: {participationaccountId} is the id you get when you call the webservice "List accounts of the user":_
+p. _NB: {participationaccountId} is the id you get when you call the webservice "List accounts of the user", in the example below, participationaccountId=1:_
 
 bc. {
 "listParticipationsToAccounts":[
@@ -209,12 +209,12 @@ bc. {
     "account":{
         "currency":"euros",
         "entityId":1,
-        "id":1,
+        "id":4,
         "name":"NewAccount",
         "persistent":true
     },
     "entityId":1,
-    *"id":1,*
+    "id":1,
     "persistent":true,
     "role":"ADMIN",
     "status":"CONFIRMED"

@@ -24,11 +24,11 @@ p. Return
 * Success
 
 bc. {
-"FBid":1125222192,
-"name":"Thibault Durand",
-"firstName":"Thibault",
-"lastName":"Durand"
-"email":"tibo.durand@gmail.com"
+    "FBid":1125222192,
+    "name":"Thibault Durand",
+    "firstName":"Thibault",
+    "lastName":"Durand"
+    "email":"tibo.durand@gmail.com"
 }
 
 * Error
@@ -51,22 +51,22 @@ p. Return the list of accounts the user is part of : in this example, there is j
 
 bc. {
 "listParticipationsToAccounts":[
-{
-"account":{
-"currency":"euros",
-"entityId":1,
-"id":1,
-"name":"NewAccount",
-"persistent":true
-},
-"entityId":1,
-"id":1,
-"persistent":true,
-"role":"ADMIN",
-"status":"CONFIRMED"
-}
-]
-}
+    {
+    "account":{
+        "currency":"euros",
+        "entityId":1,
+        "id":1,
+        "name":"NewAccount",
+        "persistent":true
+    },
+    "entityId":1,
+    "id":1,
+    "persistent":true,
+    "role":"ADMIN",
+    "status":"CONFIRMED"
+    }
+    ]
+    }
     
 h3. Account
 
@@ -90,83 +90,83 @@ For example: creation of an account "NewAccount" with 2 participants : test@gmai
 (_Arguments: access_token=AAAEFcJcBFwEBAPHM8Rz1x2L3sVaZAqrEBTPHIkMFr5&name=NewAccount&currency=euros&emails=test@gmail.com&emails=truc@gmail.com_)
 
 bc. 
-    {
+{
     "creator":{
-    "entityId":4,
-    "id":4,
-    "persistent":true,
-    "role":"ADMIN",
-    "status":"CONFIRMED",
-    "user":{
-    "FBid":1125222192,
-    "email":null,
-    "entityId":1,
-    "firstName":"Thibault",
-    "id":1,
-    "lastName":"Durand",
-    "name":"Thibault Durand",
-    "persistent":true
-    }
+        "entityId":4,
+        "id":4,
+        "persistent":true,
+        "role":"ADMIN",
+        "status":"CONFIRMED",
+        "user":{
+            "FBid":1125222192,
+            "email":null,
+            "entityId":1,
+            "firstName":"Thibault",
+            "id":1,
+            "lastName":"Durand",
+            "name":"Thibault Durand",
+            "persistent":true
+        }
     },
     "currency":"euros",
     "entityId":3,
     "id":3,
     "listParticipants":[
     {
-    "entityId":4,
-    "id":4,
-    "persistent":true,
-    "role":"ADMIN",
-    "status":"CONFIRMED",
-    "user":{
-    "FBid":1125222192,
-    "email":null,
-    "entityId":1,
-    "firstName":"Thibault",
-    "id":1,
-    "lastName":"Durand",
-    "name":"Thibault Durand",
-    "persistent":true
-    }
+        "entityId":4,
+        "id":4,
+        "persistent":true,
+        "role":"ADMIN",
+        "status":"CONFIRMED",
+        "user":{
+            "FBid":1125222192,
+            "email":null,
+            "entityId":1,
+            "firstName":"Thibault",
+            "id":1,
+            "lastName":"Durand",
+            "name":"Thibault Durand",
+            "persistent":true
+        }
     },
     {
-    "entityId":6,
-    "id":6,
-    "persistent":true,
-    "role":"USER",
-    "status":"PENDING",
-    "user":{
-    "FBid":0,
-    "email":"test@gmail.com",
-    "entityId":5,
-    "firstName":null,
-    "id":5,
-    "lastName":null,
-    "name":null,
-    "persistent":true
-    }
+        "entityId":6,
+        "id":6,
+        "persistent":true,
+        "role":"USER",
+        "status":"PENDING",
+        "user":{
+            "FBid":0,
+            "email":"test@gmail.com",
+            "entityId":5,
+            "firstName":null,
+            "id":5,
+            "lastName":null,
+            "name":null,
+            "persistent":true
+        }
     },
     {
-    "entityId":8,
-    "id":8,
-    "persistent":true,
-    "role":"USER",
-    "status":"PENDING",
-    "user":{
-    "FBid":0,
-    "email":"truc@gmail.com",
-    "entityId":7,
-    "firstName":null,
-    "id":7,
-    "lastName":null,
-    "name":null,
-    "persistent":true
-    }
+        "entityId":8,
+        "id":8,
+        "persistent":true,
+        "role":"USER",
+        "status":"PENDING",
+        "user":{
+            "FBid":0,
+            "email":"truc@gmail.com",
+            "entityId":7,
+            "firstName":null,
+            "id":7,
+            "lastName":null,
+            "name":null,
+            "persistent":true
+        }
     }
     ],
     "name":"NewAccount",
     "persistent":true
-    }
+}
 
 h4. Delete Account:
 
@@ -176,11 +176,11 @@ p. To work, it must be an user with role ADMIN on the account.
 
 p. @GET account/{accountId}/delete/{access_token}@
 
-p. Success:
+* Success
 
 bc. {"success":"Account delete"}
 
-p. Errors:
+* Errors:
 
 bc. {"error":"This account doesn't exist"}
 {"error":"Not allowed to delete an account if you're not ADMIN"}
@@ -191,14 +191,33 @@ p. Change the status of the participant of an account: "PENDING" to "CONFIRMED".
 
 p. @GET participationaccount/{participationaccountId}/confirm/{access_token}@
 
-p. _NB: {participationaccountId} is the id you get when you call the webservice "List accounts of the user":_
-
-p. Success: 
+* Success
 
 bc. {"success":"Participation confirmed"}
 
-p. Errors:
+* Errors:
 
 bc. {"error":"Participation already confirmed"}
-    {"error":"Not allowed to confirm"}
-    {"error":"This participation doesn't exist"}
+{"error":"Not allowed to confirm"}
+{"error":"This participation doesn't exist"}
+    
+p. _NB: {participationaccountId} is the id you get when you call the webservice "List accounts of the user":_
+
+bc. {
+"listParticipationsToAccounts":[
+    {
+    "account":{
+        "currency":"euros",
+        "entityId":1,
+        "id":1,
+        "name":"NewAccount",
+        "persistent":true
+    },
+    "entityId":1,
+    *{color:red}"id":1,*
+    "persistent":true,
+    "role":"ADMIN",
+    "status":"CONFIRMED"
+    }
+    ]
+    }

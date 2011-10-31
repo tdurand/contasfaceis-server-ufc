@@ -50,7 +50,7 @@ p. @GET /user/account/all/{access_token}@
 p. Return the list of accounts the user is part of : in this example, there is just one account call "NewAccount", and the user is "ADMIN".
 
 bc. {
-"listAccounts":[
+"listParticipationsToAccounts":[
 {
 "account":{
 "currency":"euros",
@@ -168,3 +168,34 @@ bc.
     "persistent":true
     }
 
+h4. Delete Account:
+
+p. Delete the account and all the expenses which are linked with. 
+
+p. To work, it must be an user with role ADMIN on the account.
+
+p. @GET account/{accountId}/delete/{access_token}@
+
+p. Success:
+
+bc. {"success":"Account delete"}
+
+p. Errors:
+
+bc. {"error":"This account doesn't exist"}
+bc. {"error":"Not allowed to delete an account if you're not ADMIN"}
+
+h4. Confirm participation to an account
+
+p. Change the status of the participant of an account: "PENDING" to "CONFIRMED".
+
+p. @GET participationaccount/{participationaccountId}/confirm/{access_token}@
+
+p. _NB: {participationaccountId} is the id you get when you call the webservice "List accounts of the user": _
+
+p. Success: 
+bc. {"success":"Participation confirmed"}
+p. Errors:
+bc. {"error":"Participation already confirmed"}
+bc. {"error":"Not allowed to confirm"}
+bc. {"error":"This participation doesn't exist"}

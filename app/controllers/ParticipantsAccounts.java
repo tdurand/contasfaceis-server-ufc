@@ -31,15 +31,21 @@ public class ParticipantsAccounts extends Controller {
         //Retrieve participantAccount id
         ParticipantAccount participantAccountToConfirm=ParticipantAccount.findById(participantAccountId);
         
-        if(participantAccountToConfirm.user.equals(user) && participantAccountToConfirm.status!=ParticipantStatus.CONFIRMED) {
-            participantAccountToConfirm.status=ParticipantStatus.CONFIRMED;
-            participantAccountToConfirm.save();
-            renderJSON(new JSONSerializer().exclude("*.class","user","account").serialize(participantAccountToConfirm));
+        if(participantAccountToConfirm!=null) {
+            if(participantAccountToConfirm.user.equals(user) && participantAccountToConfirm.status!=ParticipantStatus.CONFIRMED) {
+                participantAccountToConfirm.status=ParticipantStatus.CONFIRMED;
+                participantAccountToConfirm.save();
+                renderJSON("{\"success\":\"Participation confirmed\"}");
+            }
+            else if(participantAccountToConfirm.status==ParticipantStatus.CONFIRMED) {
+                renderJSON("{\"error\":\"Participation already confirmed\"}"); 
+            }
+            else {
+                renderJSON("{\"error\":\"Not allowed to confirm\"}");
+            }
         }
         else {
-            //TODO render error: not allowed to modify 
+            renderJSON("{\"error\":\"This participation doesn't exist\"}");
         }
-        
-        renderJSON(new JSONSerializer().exclude("*.class","user","account").serialize(participantAccountToConfirm));
     }
 }

@@ -64,6 +64,8 @@ public class Accounts extends Controller {
     }
     
     public static void delete(Long accountId) {
+        //NB: deprecated if we set up an other way to be ADMIN
+        
         //Retrieve user
         User creator=User.findById(Long.parseLong(session.get("uuid")));
         
@@ -81,7 +83,7 @@ public class Accounts extends Controller {
                 renderJSON("{\"success\":\"Account delete\"}");
             }
             else {
-                renderJSON("{\"error\":\"Not allowed to delete an account if you're not the creator\"}");
+                renderJSON("{\"error\":\"Not allowed to delete an account if you're not ADMIN\"}");
             }
         }
         else {

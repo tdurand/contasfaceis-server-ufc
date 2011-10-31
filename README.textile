@@ -214,7 +214,7 @@ bc. {
         "persistent":true
     },
     "entityId":1,
-    *{color:red}"id":1,*
+    %{color:red;font-size:large}"id":1,%
     "persistent":true,
     "role":"ADMIN",
     "status":"CONFIRMED"

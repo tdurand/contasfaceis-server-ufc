@@ -39,6 +39,7 @@ public class Expenses extends Controller {
             
             accountOfExpense.save();
             ownerParticipant.save();
+            renderJSON("{\"success\":\"Expense successfully deleted\"}");
         }
     }
 

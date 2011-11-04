@@ -16,6 +16,13 @@ GET     /participationaccount/{participantAccountId}/confirm/{access_token} Part
 POST    /account/                                              Accounts.create
 #Delete Account
 GET     /account/{accountId}/delete/{access_token}             Accounts.delete
+#Get All participants of the account
+GET     /account/{accountId}/participant/all/{access_token}       Accounts.getAllParticipantsOfAccount
+
+#Add expense
+POST    /account/{accountId}/addexpense                        Accounts.addExpense
+#Delete expense
+GET     /expense/{expenseId}/delete/{access_token}             Expenses.deleteExpense
 
 
 # Ignore favicon requests

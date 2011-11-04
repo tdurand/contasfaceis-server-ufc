@@ -94,5 +94,20 @@ public class Accounts extends Controller {
     }
     
     
+    public static void getAllParticipantsOfAccount(Long accountId) {
+        //Retrieve user
+        User owner=User.findById(Long.parseLong(session.get("uuid")));
+        //Retrieve account
+        Account account=Account.findById(accountId);
+        if(account==null) {
+            renderJSON("{\"error\":\"This account doesn't exist\"}");
+        }
+        //Retrieve ParticipantAccount
+        ParticipantAccount participantAccount=ParticipantAccount.find("SELECT p FROM ParticipantAccount p WHERE p.user.id=? AND p.account.id=?",owner.id,account.id).first();
+        if(participantAccount==null) {
+            renderJSON("{\"error\":\"You don't participate to this account\"}");
+        }
+        renderJSON(new JSONSerializer().exclude("*.class","account").rootName("listOfParticipants").serialize(account.listParticipants));
+    }
     
 }

@@ -93,6 +93,12 @@ public class Accounts extends Controller {
     }
     
     public static void addExpense(Long accountId,String description,Float amount) {
+        if(description==null) {
+            renderJSON("{\"error\":\"The description is not correct\"}");
+        }
+        if(amount==null) {
+            renderJSON("{\"error\":\"The ammount is not correct\"}");
+        }
         //Retrieve user
         User owner=User.findById(Long.parseLong(session.get("uuid")));
         //Retrieve account

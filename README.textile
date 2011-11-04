@@ -221,3 +221,73 @@ bc. {
     }
     ]
     }
+    
+    
+h4. List all participants of an account:
+
+p. List all participants of an account
+
+@GET    /account/{accountId}/participant/all/{access_token}@
+
+* Success
+
+bc. {
+"listOfParticipants":[
+    {
+        "entityId":73,
+        "id":73,
+        "persistent":true,
+        "role":"ADMIN",
+        "status":"CONFIRMED",
+        "user":{
+            "FBid":1125222192,
+            "email":"tibo.durand@gmail.com",
+            "entityId":1,
+            "firstName":"Thibault",
+            "id":1,
+            "lastName":"Durand",
+            "name":"Thibault Durand",
+            "persistent":true
+        }
+    },
+    {
+        "entityId":74,
+        "id":74,
+        "persistent":true,
+        "role":"USER",
+        "status":"PENDING",
+        "user":{
+            "FBid":0,
+            "email":"tibo.durand+cf1@gmail.com",
+            "entityId":71,
+            "firstName":"Contas",
+            "id":71,
+            "lastName":"Faceis",
+            "name":"Contas Faceis",
+            "persistent":true
+        }
+    },
+    {
+        "entityId":76,
+        "id":76,
+        "persistent":true,
+        "role":"USER",
+        "status":"PENDING",
+        "user":{
+            "FBid":0,
+            "email":"tibo.durand+cf2@gmail.com",
+            "entityId":75,
+            "firstName":null,
+            "id":75,
+            "lastName":null,
+            "name":null,
+            "persistent":true
+        }
+    }
+    ]
+}
+
+* Errors
+
+bc. {"error":"This account doesn't exist"}
+{"error":"You don't participate to this account"}

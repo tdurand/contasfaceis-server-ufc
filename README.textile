@@ -291,3 +291,92 @@ bc. {
 
 bc. {"error":"This account doesn't exist"}
 {"error":"You don't participate to this account"}
+
+
+h3. C. Expenses
+
+h4. 1. Add Expense
+
+p. This web service add an expense to the an account
+
+p. @POST expense/@ 
+
+p. Arguments :
+
+* *access_token (required)* : Your facebook access_token
+* *accountId (required)* : the id of the account you want to add an expense 
+* *description [String] (required)* : the description of the expense you've just did (ex: "Water", "Meat" ...)
+* *amount (required)* : the amount of the expense (ex: 5 , 5.1 ...)
+
+p. Return
+
+* Success
+
+@{"success":"The expense was successfully registered"}@
+
+* Error
+
+bc.{"error":"The amount is not correct"}
+{"error":"This account doesn't exist"}
+{"error":"You don't participate to this account"}
+
+h4. 2. Delete an Expense
+
+p. This webservice delete an expense from an account
+
+@GET /expense/{expenseId}/delete/{access_token}@
+
+p. Return
+
+* Success 
+
+bc.{"success":"Expense successfully deleted"}
+{"error":"This expense doesn't belong to you, you can't delete it"}
+
+* Error
+
+bc.{"error":"This expense doesn't exist"}
+
+h4. 3. List Expenses of an Account
+
+p. This webservice list all the expense of an account
+
+@GET /account/{accountId}/expense/all/{access_token}@ 
+
+p. Return
+
+* Success (In this example, the only expense is: amount=3.2,description=Oil)
+
+bc.{
+    "listOfExpenses":[
+    {
+        "amount":3.2,
+        "description":"Oil",
+        "entityId":77,
+        "id":77,
+        "owner":{
+            "entityId":73,
+            "id":73,
+            "persistent":true,
+            "role":"ADMIN",
+            "status":"CONFIRMED",
+            "user":{
+                "FBid":1125222192,
+                "email":"tibo.durand@gmail.com",
+                "entityId":1,
+                "firstName":"Thibault",
+                "id":1,
+                "lastName":"Durand",
+                "name":"Thibault Durand",
+                "persistent":true
+            }
+        },
+        "persistent":true
+    },
+    ]
+}
+
+* Error
+
+bc. {"error":"This account doesn't exist"}
+{"error":"You don't participate to this account"}

@@ -17,10 +17,12 @@ POST    /account/                                              Accounts.create
 #Delete Account
 GET     /account/{accountId}/delete/{access_token}             Accounts.delete
 #Get All participants of the account
-GET     /account/{accountId}/participant/all/{access_token}       Accounts.getAllParticipantsOfAccount
+GET     /account/{accountId}/participant/all/{access_token}    Accounts.getAllParticipantsOfAccount
+#Get Expenses of the account
+GET     /account/{accountId}/expense/all/{access_token}        Accounts.getAllExpensesOfAccount
 
 #Add expense
-POST    /account/{accountId}/addexpense                        Accounts.addExpense
+POST    /expense/                                              Accounts.addExpense
 #Delete expense
 GET     /expense/{expenseId}/delete/{access_token}             Expenses.deleteExpense
 

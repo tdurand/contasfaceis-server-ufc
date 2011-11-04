@@ -15,13 +15,23 @@ import play.db.jpa.Model;
 @Entity
 public class Expense extends Model {
     
-    @ManyToOne 
+    @ManyToOne
     public ParticipantAccount owner;
     
     @ManyToOne
     public Account account;
     
     public Float amount;
+    public String description;
     
+    
+    public Expense(ParticipantAccount owner, Account account, Float amount,
+            String description) {
+        super();
+        this.owner = owner;
+        this.account = account;
+        this.amount = amount;
+        this.description = description;
+    }
     
 }

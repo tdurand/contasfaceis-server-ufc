@@ -97,7 +97,7 @@ public class Accounts extends Controller {
             renderJSON("{\"error\":\"The description is not correct\"}");
         }
         if(amount==null) {
-            renderJSON("{\"error\":\"The ammount is not correct\"}");
+            renderJSON("{\"error\":\"The amount is not correct\"}");
         }
         //Retrieve user
         User owner=User.findById(Long.parseLong(session.get("uuid")));

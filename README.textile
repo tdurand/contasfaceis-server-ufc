@@ -8,9 +8,9 @@ h2. Webservices:
 
 p. All webservice return JSON Object
 
-h3. User
+h3. A. User
 
-h4. Authentificate user
+h4.     1. Authentificate user
 
 p. This webservice request facebook with the accesstoken given by the client and retrieve information. It check in the database if the user exists and retrieves information (FBid, name, firstName, lastname). If the user doesn't exist, it automatically creates him.
 
@@ -41,7 +41,7 @@ bc. {
     }
     
     
-h4. List accounts of the user
+h4.     2. List accounts of the user
 
 p. This web service retrieve the list of account the user is part of
 
@@ -68,9 +68,9 @@ bc. {
     ]
     }
     
-h3. Account
+h3. B. Account
 
-h4. Create Account
+h4.     1. Create Account
 
 p. This web service create an Account and send invite to participants
 
@@ -168,7 +168,7 @@ bc.
     "persistent":true
 }
 
-h4. Delete Account:
+h4.     2. Delete Account:
 
 p. Delete the account and all the expenses which are linked with. 
 
@@ -185,7 +185,7 @@ bc. {"success":"Account delete"}
 bc. {"error":"This account doesn't exist"}
 {"error":"Not allowed to delete an account if you're not ADMIN"}
 
-h4. Confirm participation to an account
+h4.     3. Confirm participation to an account
 
 p. Change the status of the participant of an account: "PENDING" to "CONFIRMED".
 
@@ -223,7 +223,7 @@ bc. {
     }
     
     
-h4. List all participants of an account:
+h4.     4. List all participants of an account:
 
 p. List all participants of an account
 

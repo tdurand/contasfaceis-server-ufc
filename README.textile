@@ -292,6 +292,55 @@ bc. {
 bc. {"error":"This account doesn't exist"}
 {"error":"You don't participate to this account"}
 
+h4.         5. Resolve Account
+
+p. Resolve the account, calculate all the transaction ,the total amount spent and the balance of each participant of the account which are CONFIRMED. 
+
+@GET http://localhost:9000/account/{accountId}/result/{access_token}@
+
+p. Result:
+
+* Success
+
+bc. {
+    "resultParticipants":[
+    {
+        "name":"Thibault Durand",
+        "email":"tibo.durand@gmail.com",
+        "amountSpent":19.2,
+        "balance":7.0
+    },
+    {
+        "name":"Contas Faceis",
+        "email":"tibo.durand+cf1@gmail.com",
+        "amountSpent":5.19,
+        "balance":-7.01
+    }
+    ],
+    "transactionsToResolve":[
+    {
+        "beneficiary":{
+            "name":"Thibault Durand",
+            "email":"tibo.durand@gmail.com",
+            "amountSpent":19.2,
+            "balance":7.0
+        },
+        "payor":{
+            "name":"Contas Faceis",
+            "email":"tibo.durand+cf1@gmail.com",
+            "amountSpent":5.19,
+            "balance":-7.01
+        },
+        "amount":7.0
+    }
+    ],
+    "unitCost":12.2
+}
+
+* Errors
+
+bc. {"error":"This account doesn't exist"}
+{"error":"You don't participate to this account"}
 
 h3. C. Expenses
 

@@ -20,6 +20,8 @@ GET     /account/{accountId}/delete/{access_token}             Accounts.delete
 GET     /account/{accountId}/participant/all/{access_token}    Accounts.getAllParticipantsOfAccount
 #Get Expenses of the account
 GET     /account/{accountId}/expense/all/{access_token}        Accounts.getAllExpensesOfAccount
+#Resolve the account
+GET     /account/{accountId}/result/{access_token}             Accounts.result
 
 #Add expense
 POST    /expense/                                              Accounts.addExpense

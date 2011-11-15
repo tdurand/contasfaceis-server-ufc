@@ -3,17 +3,24 @@ package controllers;
 import play.*;
 import play.libs.WS;
 import play.mvc.*;
+import play.templates.TemplateLoader;
+import utils.Constants;
 import utils.Constants.ParticipantRole;
 import utils.Constants.ParticipantStatus;
 import utils.Secure;
 
 import java.util.*;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 
 import flexjson.JSONSerializer;
 
 import models.*;
+import models.results.ResultAccount;
+import models.results.ResultParticipant;
 
 @With(Secure.class)
 public class Accounts extends Controller {
@@ -154,6 +161,49 @@ public class Accounts extends Controller {
             renderJSON("{\"error\":\"You don't participate to this account\"}");
         }
         renderJSON(new JSONSerializer().exclude("*.class","account","owner.account").rootName("listOfExpenses").serialize(account.listExpenses));
+    }
+    
+    public static void result(Long accountId) {
+      //Retrieve user
+        User owner=User.findById(Long.parseLong(session.get("uuid")));
+        //Retrieve account
+        Account account=Account.findById(accountId);
+        if(account==null) {
+            renderJSON("{\"error\":\"This account doesn't exist\"}");
+        }
+        //Retrieve ParticipantAccount
+        ParticipantAccount participantAccount=ParticipantAccount.find("SELECT p FROM ParticipantAccount p WHERE p.user.id=? AND p.account.id=?",owner.id,account.id).first();
+        if(participantAccount==null) {
+            renderJSON("{\"error\":\"You don't participate to this account\"}");
+        }
+        
+        //Resolve Account
+        ResultAccount resultAccount=new ResultAccount();
+        float totalExpenseofParticipant=0;
+        
+        for (Iterator iterator = account.listParticipants.iterator(); iterator.hasNext();) {
+            ParticipantAccount aParticipantAccount = (ParticipantAccount) iterator.next();
+            
+            if(aParticipantAccount.status.equals(Constants.ParticipantStatus.CONFIRMED)) {
+                
+                for (Iterator iterator2 = aParticipantAccount.listExpenses.iterator(); iterator2
+                .hasNext();) {
+                    Expense anExpense = (Expense) iterator2.next();
+                    
+                    totalExpenseofParticipant+=anExpense.amount;
+                }
+                
+                resultAccount.addResultParticipant(new ResultParticipant(aParticipantAccount.user.name, aParticipantAccount.user.email, 1, totalExpenseofParticipant));
+                
+                totalExpenseofParticipant=0;
+            }
+        }
+        
+        resultAccount.solve();
+
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+        
+        renderJSON(gson.toJson(resultAccount));
     }
     
 }

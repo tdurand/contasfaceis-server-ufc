@@ -48,4 +48,5 @@ public class ParticipantsAccounts extends Controller {
             renderJSON("{\"error\":\"This participation doesn't exist\"}");
         }
     }
+    
 }

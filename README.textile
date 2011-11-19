@@ -296,7 +296,7 @@ h4.         5. Resolve Account
 
 p. Resolve the account, calculate all the transaction ,the total amount spent and the balance of each participant of the account which are CONFIRMED. 
 
-@GET http://localhost:9000/account/{accountId}/result/{access_token}@
+@GET /account/{accountId}/result/{access_token}@
 
 p. Result:
 

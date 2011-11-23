@@ -199,6 +199,7 @@ p. @GET account/{accountId}/clear/{access_token}@
 bc. {"success":"Account cleared"}
 
 * Errors:
+
 bc. {"error":"This account doesn't exist"}
 {"error":"Not allowed to clear an account if you're not ADMIN"}
 

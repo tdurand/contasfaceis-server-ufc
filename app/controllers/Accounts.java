@@ -1,26 +1,25 @@
 package controllers;
 
-import play.*;
-import play.libs.WS;
-import play.mvc.*;
-import play.templates.TemplateLoader;
+import java.util.Iterator;
+import java.util.List;
+
+import models.Account;
+import models.Expense;
+import models.ParticipantAccount;
+import models.User;
+import models.results.ResultAccount;
+import models.results.ResultParticipant;
+import play.mvc.Controller;
+import play.mvc.With;
 import utils.Constants;
 import utils.Constants.ParticipantRole;
 import utils.Constants.ParticipantStatus;
 import utils.Secure;
 
-import java.util.*;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 
 import flexjson.JSONSerializer;
-
-import models.*;
-import models.results.ResultAccount;
-import models.results.ResultParticipant;
 
 @With(Secure.class)
 public class Accounts extends Controller {
@@ -99,6 +98,7 @@ public class Accounts extends Controller {
         
     }
     
+    
     public static void addExpense(Long accountId,String description,Float amount) {
         if(description==null) {
             renderJSON("{\"error\":\"The description is not correct\"}");
@@ -129,6 +129,39 @@ public class Accounts extends Controller {
         participantAccount.save();
         
         renderJSON("{\"success\":\"The expense was successfully registered\"}");
+    }
+    
+    public static void clear(Long accountId) {
+        //Retrieve user
+        User creator=User.findById(Long.parseLong(session.get("uuid")));
+        
+        //Retrieve account
+        Account accountToClear=Account.findById(accountId);
+        if(accountToClear!=null) {
+            if(accountToClear.creator.user.equals(creator)) {
+                List<Expense> expensesToDelete=Expense.find("SELECT e FROM Expense e WHERE e.account.id=?",accountId).fetch();
+                
+                for (Iterator iterator = expensesToDelete.iterator(); iterator
+                        .hasNext();) {
+                    Expense expense = (Expense) iterator.next();
+                    ParticipantAccount ownerParticipant=ParticipantAccount.findById(expense.owner.id);
+                    
+                    ownerParticipant.listExpenses.remove(expense);
+                    accountToClear.listExpenses.remove(expense);
+                    
+                    accountToClear.save();
+                    ownerParticipant.save();
+                }
+                renderJSON("{\"success\":\"Account cleared\"}");
+            }
+            else {
+                renderJSON("{\"error\":\"Not allowed to clear an account if you're not ADMIN\"}");
+            }
+        }
+        else {
+            renderJSON("{\"error\":\"This account doesn't exist\"}");
+        }
+            
     }
     
     public static void getAllParticipantsOfAccount(Long accountId) {

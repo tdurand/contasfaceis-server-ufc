@@ -42,6 +42,5 @@ public class Expenses extends Controller {
             renderJSON("{\"success\":\"Expense successfully deleted\"}");
         }
     }
-    
 
 }

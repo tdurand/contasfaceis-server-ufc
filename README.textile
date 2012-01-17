@@ -1,5 +1,11 @@
 h1. Documentation
 
+h2. Introduction
+
+p. This application provides webservices to build an application witch will divise expenses between friends. It uses OAuth2 to log user via facebook accounts.
+
+p. It was part of my mobile computing course in Fortaleza, Brazil (UFC)
+
 h2. Deployed application
 
 p. "http://cold-frost-3484.herokuapp.com/":http://cold-frost-3484.herokuapp.com/
